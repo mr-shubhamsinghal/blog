@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # separately installed apps
+    'rest_framework',
+
+    # my own created apps
     'bloggingapp',
 ]
 
