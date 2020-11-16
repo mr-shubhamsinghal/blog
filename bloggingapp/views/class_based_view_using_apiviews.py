@@ -27,3 +27,28 @@ class BlogAPIView(APIView):
 						'data': serializer.data
 					})
 
+	def put(self, request, *args, **kwargs):
+		pk = request.data.get('id')
+		if pk is not None:
+			blog = BlogModel.objects.get(pk=int(pk))
+			if blog:
+				serializer = BlogSerializer(blog, data=request.data)
+				if serializer.is_valid():
+					serializer.save()
+					return Response({
+							'success': True,
+							'message': 'APIView: updated blog post',
+							'data': serializer.data
+						})
+
+	def delete(self, request, *args, **kwargs):
+		pk = request.data.get('id')
+		if pk is not None:
+			blog = BlogModel.objects.get(pk=int(pk))
+			if blog:
+				blog.delete()
+				return Response({
+						'success': True,
+						'message': 'APIView: delete request fulfilled',
+					})
+
