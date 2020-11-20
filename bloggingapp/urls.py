@@ -1,7 +1,7 @@
 from django.urls import path
 
 from bloggingapp.views import (blog_view, BlogAPIView, BlogViewSets,
-							   BlogListCreateAPIView,
+							   BlogListCreateAPIView, BlogModelViewSets,
 							   BlogRetrieveUpdateDestroyAPIView)
 
 
@@ -15,6 +15,14 @@ blog_list = BlogViewSets.as_view({
 blog_detail = BlogViewSets.as_view({
 		'get': 'retrieve',
 	})
+
+blogmodel_list = BlogModelViewSets.as_view({
+        'get': 'list',
+    })
+
+blogmodel_detail = BlogModelViewSets.as_view({
+        'get': 'retrieve',
+    })
 
 
 urlpatterns = [
@@ -31,4 +39,8 @@ urlpatterns = [
     	path('cbv_viewsets_list_view/', blog_list, name='blog_viewsets_list'),
 
     	path('cbv_viewsets_detail_view/<int:pk>/', blog_detail, name='blog_viewsets_detail'),
+
+        path('cbv_viewsets_list/', blogmodel_list, name='blogmodel-list'),
+
+        path('cbv_viewsets_detail/<int:pk>/', blogmodel_detail, name='blogmodel-detail'),
     ]

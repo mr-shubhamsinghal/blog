@@ -22,3 +22,8 @@ class BlogViewSets(viewsets.ViewSet):
 			blog = get_object_or_404(queryset, pk=pk)
 			serializer = BlogSerializer(blog)
 			return Response(serializer.data)
+
+
+class BlogModelViewSets(viewsets.ModelViewSet):
+	queryset = BlogModel.objects.all()
+	serializer_class = BlogSerializer
